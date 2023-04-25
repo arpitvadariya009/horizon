@@ -1,0 +1,39 @@
+<%- include('header')%>
+
+
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">edit quotes</h5>
+            <div class="card">
+              <div class="card-body">
+                <form action="/admin/update_quotes" method="post" >
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">quotes</label>
+                    <input type="hidden" name="id" value="<%=singledata.id%>">
+                    <input type="text" name="quotes"  value="<%=singledata.quotes%>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">post details</label>
+                    <input type="text" name="writer" value="<%=singledata.writer%>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/sidebarmenu.js"></script>
+<script src="../assets/js/app.min.js"></script>
+<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+</body>
+
+</html>

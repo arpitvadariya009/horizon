@@ -1,0 +1,443 @@
+<%-include('header')%>
+
+<div class="slider">
+  <div class="fullwidthbanner-container">
+    <div class="fullwidthbanner">
+      <ul>
+        <%alldata.forEach((val)=>{ %>
+          <li class="first-slide" data-transition="fade" data-slotamount="10" data-masterspeed="300">
+            <img src="<%=val.slider_image%>" data-fullwidthcentering="on" alt="slide">
+            <div class="tp-caption first-line lft tp-resizeme start" data-x="center" data-hoffset="0" data-y="250" data-speed="1000" data-start="200" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0"><%=val.title1%></div>
+            <div class="tp-caption second-line lfb tp-resizeme start" data-x="center" data-hoffset="0" data-y="340" data-speed="1000" data-start="800" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0"><%=val.title2%></div>
+            <div class="tp-caption slider-btn sfb tp-resizeme start" data-x="center" data-hoffset="0" data-y="510" data-speed="1000" data-start="2200" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0"><a href="#" class="btn btn-slider">Discover More</a></div>
+          </li>
+          <% }) %>
+        <!-- <li class="first-slide" data-transition="fade" data-slotamount="10" data-masterspeed="300">
+          <img src="files/images/02-slide.jpg" data-fullwidthcentering="on" alt="slide">
+          <div class="tp-caption first-line lft tp-resizeme start" data-x="center" data-hoffset="0" data-y="250" data-speed="1000" data-start="200" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0">Create a Multi Author Blog</div>
+          <div class="tp-caption second-line lfb tp-resizeme start" data-x="center" data-hoffset="0" data-y="340" data-speed="1000" data-start="800" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0">Using Yom you can create multi author Blog platform</div>
+          <div class="tp-caption slider-btn sfb tp-resizeme start" data-x="center" data-hoffset="0" data-y="510" data-speed="1000" data-start="2200" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0"><a href="#" class=" second-btn btn btn-slider">Discover More</a></div>
+        </li>
+        <li class="first-slide" data-transition="fade" data-slotamount="10" data-masterspeed="300">
+          <img src="files/images/03-slide.jpg" data-fullwidthcentering="on" alt="slide">
+          <div class="tp-caption first-line lft tp-resizeme start" data-x="center" data-hoffset="0" data-y="250" data-speed="1000" data-start="200" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0">Create an E-commerce Site</div>
+          <div class="tp-caption second-line lfb tp-resizeme start" data-x="center" data-hoffset="0" data-y="340" data-speed="1000" data-start="800" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0">Using Yom your can create a Multi Author E-Commerce Website</div>
+          <div class="tp-caption slider-btn sfb tp-resizeme start" data-x="center" data-hoffset="0" data-y="510" data-speed="1000" data-start="2200" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0" data-endelementdelay="0"><a href="#" class="btn btn-slider">Discover More</a></div>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<section class="services green">
+  <div class="container">
+    <div class="section-heading">
+      <h2>What We Offer</h2>
+      <div class="section-dec"></div>
+    </div>
+    <div class="service-item col-md-4">
+      <span><i class="fa fa-code"></i></span>
+      <div class="tittle"><h3>Custom Software Development</h3></div>
+      <p>We specialize in building custom software solutions tailored to your business needs. Our team of expert developers uses cutting-edge technology and agile development methodologies to deliver high-quality software on time and within budget.</p>
+    </div>
+    <div class="service-item col-md-4">
+      <span><i class="fa fa-desktop"></i></span>
+      <div class="tittle"><h3>IT Support Services</h3></div>
+      <p>We offer a comprehensive range of IT support services, including helpdesk support, network monitoring and management, security assessments, and disaster recovery planning. Our team of certified IT professionals is available 24/7 to provide fast and effective support.</p>
+    </div>
+    <div class="service-item col-md-4">
+      <span><i class="fa fa-cloud"></i></span>
+      <div class="tittle"><h3>Cloud Solutions</h3></div>
+      <p>We help businesses leverage the power of the cloud to improve efficiency, reduce costs, and increase scalability. Our cloud solutions include cloud migration, cloud management, and cloud security services, and we work with all major cloud providers, including AWS, Azure, and Google Cloud.</p>
+    </div> 
+  </div>
+</section>
+
+<section class="call-to-action-1">
+  <div class="container">
+    <h4>Join the Exciting World of IT with Our Comprehensive Courses</h4>
+    <p class="col-md-10 col-md-offset-1">With over 10 years of experience, we offer a wide range of IT courses designed to equip our students with the knowledge and skills required to excel in the fast-paced and constantly evolving world of technology. Our courses are delivered by industry experts who have years of practical experience in their respective fields, ensuring that our students receive the most up-to-date and relevant education possible. Join us today and take the first step towards a successful and rewarding career in IT!</p>
+    <div class="buttons">
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="border-btn"><a href="#"> Our Courses</a></div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="btn-black"><a href="#">&nbsp;&nbsp;&nbsp; Contact Us</a></div>
+      </div>
+    </div>
+  </div>	
+</section>
+
+<section class="call-to-action-2">
+  <div class="container">
+  <div class="left-text hidden-xs">
+    <h4>Unlock Your Potential with Horizon Education</h4>
+    <p><em>Discover your passion and achieve your goals with our expert guidance and comprehensive curriculum.</em><br><br>At Horizon Education, we believe that education is the key to unlocking your full potential. Our dedicated faculty and staff are committed to providing a supportive and engaging learning environment that encourages personal growth and academic excellence. With a wide range of programs and courses to choose from, we offer something for everyone, whether you're looking to enhance your career prospects or pursue a new hobby. Enroll now and embark on a journey of self-discovery and achievement with Horizon Education.</p>
+  </div>
+    <div class="right-image hidden-xs"></div>
+  </div>
+</section>
+
+<section class="portfolio">
+  <div class="container">
+    <div class="section-heading-white">
+      <h2>Recent Posts</h2>
+      <div class="section-dec"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="owl-portfolio" class="owl-carousel owl-theme">
+
+          <% postdata.forEach((val)=>{ %>
+            <div class="item">
+              <figure>
+                  <img alt="portfolio" src="<%=val.post_image%>">
+                  <figcaption>
+                      <h3><%=val.post_title%></h3>
+                      <p><%=val.post_details%></p>
+                  </figcaption>
+              </figure>								    
+            </div>
+
+        <%  }) %>
+          
+
+            <!-- <div class="item">
+              <figure>
+                  <img alt="portfolio" src="files/images/02-portfolio.jpg">
+                  <figcaption>
+                      <h3>Portland Neutra</h3>
+                      <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </figcaption>
+              </figure>								    
+            </div> -->
+            <!-- <div class="item">
+              <figure>
+                  <img alt="portfolio" src="files/images/03-portfolio.jpg">
+                  <figcaption>
+                      <h3>Synth Thundercats</h3>
+                      <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </figcaption>
+              </figure>								    
+            </div>
+            <div class="item">
+              <figure>
+                  <img alt="portfolio" src="files/images/04-portfolio.jpg">
+                  <figcaption>
+                      <h3>Bushwick Letterpress</h3>
+                      <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </figcaption>
+              </figure>								    
+            </div>
+            <div class="item">
+              <figure>
+                  <img alt="portfolio" src="files/images/05-portfolio.jpg">
+                  <figcaption>
+                      <h3>Fashion Heirloom</h3>
+                      <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </figcaption>
+              </figure>								    
+            </div>
+            <div class="item">
+              <figure>
+                  <img alt="portfolio" src="files/images/06-portfolio.jpg">
+                  <figcaption>
+                      <h3>Locavore Brooklyn</h3>
+                      <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </figcaption>
+              </figure>								    
+            </div>
+            <div class="item">
+              <figure>
+                  <img alt="portfolio" src="files/images/07-portfolio.jpg">
+                  <figcaption>
+                      <h3>Meggings Mixtape</h3>
+                      <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </figcaption>
+              </figure>								    
+            </div>
+            <div class="item">
+              <figure>
+                  <img alt="portfolio" src="files/images/08-portfolio.jpg">
+                  <figcaption>
+                      <h3>Normcore Dreamcatcher</h3>
+                      <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  </figcaption>
+              </figure>								    
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="owl-navigation">
+      <a class="btn prev fa fa-angle-left"></a>
+      <a class="btn next fa fa-angle-right"></a>
+      <a href="work-3columns.html" class="go-to">Go to portfolio</a>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-heading">
+      <h2>What Others saying</h2>
+      <div class="section-dec"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="owl-demo" class="owl-carousel owl-theme">
+
+          <% quotesdata.map((val)=>{ %>
+            <div class="item">
+              <div class="testimonials-post">
+                <span class="fa fa-quote-left"></span>
+                <p>“ <%=val.quotes%> ”</p>
+                <h6><%=val.writer%></h6>
+              </div>
+            </div>
+          <% }) %>
+          
+
+            
+            <!-- <div class="item">
+              <div class="testimonials-post">
+                <span class="fa fa-quote-left"></span>
+                <p>“ At vero eos et accusamus et iusto odio dignissimos ducimus qui molestias excepturi blanditis ”</p>
+                <h6>Akhil Luis - <em>India, Calicut</em></h6>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimonials-post">
+                <span class="fa fa-quote-left"></span>
+                <p>“ At vero eos et accusamus et iusto odio dignissimos ducimus qui molestias excepturi blanditis ”</p>
+                <h6>Ramkumar - <em>Munnar, Kerala</em></h6>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimonials-post">
+                <span class="fa fa-quote-left"></span>
+                <p>“ At vero eos et accusamus et iusto odio dignissimos ducimus qui molestias excepturi blanditis ”</p>
+                <h6>Sajit OB - <em>Berlin, Germany</em></h6>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimonials-post">
+                <span class="fa fa-quote-left"></span>
+                <p>“ At vero eos et accusamus et iusto odio dignissimos ducimus qui molestias excepturi blanditis ”</p>
+                <h6>Anithamol Benny - <em>Thodupuzha, Kottayam</em></h6>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimonials-post">
+                <span class="fa fa-quote-left"></span>
+                <p>“ At vero eos et accusamus et iusto odio dignissimos ducimus qui molestias excepturi blanditis ”</p>
+                <h6>Sreejith Rajan - <em>India, Alappuzha</em></h6>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimonials-post">
+                <span class="fa fa-quote-left"></span>
+                <p>“ At vero eos et accusamus et iusto odio dignissimos ducimus qui molestias excepturi blanditis ”</p>
+                <h6>Aneeshkumar - <em>Kakkanad ,Cochin</em></h6>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimonials-post">
+                <span class="fa fa-quote-left"></span>
+                <p>“ At vero eos et accusamus et iusto odio dignissimos ducimus qui molestias excepturi blanditis ”</p>
+                <h6>Rohit Sarma - <em>Gurgaon, India</em></h6>
+              </div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="call-to-action-3">
+  <div class="container">
+    <div class="col-md-12">
+      <h4 class="col-md-10 col-sm-8">Read your lastest newsletters, we have an offer for you!</h4>
+      <div class="btn-black col-md-2 col-sm-4"><a href="#">Take it now</a></div>
+    </div>
+  </div>
+</section> -->
+
+<section class="blog-posts">
+  <div class="container">
+    <div class="section-heading">
+      
+      <div class="section-dec"></div>
+    </div>
+    <h2>Latest Posts</h2>
+    <div class="blog-item">
+      <div class="col-md-4">
+        <a href="blog-single.html"><img src="files/images/01-blog.jpg" alt=""></a>
+        <h3><a href="blog-single.html">Lorum Ipsum5</a></h3>
+        <span><a href="#">Syam Kesav</a> / <a href="#">6 June 2015</a> / <a href="#">Uncategorized</a></span>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit alis quam est leo, imperdiet eget dictum sed, congue non erosa senean sed ligula hendrerit...</p>
+        <div class="read-more">
+          <a href="blog-single.html">Read more</a>
+        </div>
+      </div>
+    </div>
+    <div class="blog-item">
+      <div class="col-md-4">
+        <a href="blog-single.html"><img src="files/images/02-blog.jpg" alt=""></a>
+        <h3><a href="blog-single.html">Lorum Ipsum5</a></h3>
+        <span><a href="#">Manohar Raj</a> / <a href="#">6 June 2015</a> / <a href="#">Uncategorized</a></span>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit alis quam est leo, imperdiet eget dictum sed, congue non erosa senean sed ligula hendrerit...</p>
+        <div class="read-more">
+          <a href="blog-single.html">Read more</a>
+        </div>
+      </div>
+    </div>
+    <div class="blog-item">
+      <div class="col-md-4">
+        <a href="blog-single.html"><img src="files/images/03-blog.jpg" alt=""></a>
+        <h3><a href="blog-single.html">Lorum Ipsum5</a></h3>
+        <span><a href="#">George Yeti</a> / <a href="#">6 June 2015</a> / <a href="#">Uncategorized</a></span>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit alis quam est leo, imperdiet eget dictum sed, congue non erosa senean sed ligula hendrerit...</p>
+        <div class="read-more">
+          <a href="blog-single.html">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+        <footer class="footer">
+<div class="three spacing"></div>
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+  <h1>
+    <a href="index.html">
+     Horizon education
+    </a>
+  </h1>
+  <p>©2015 education All rights reserved.</p>
+  <div class="spacing"></div>
+  <ul class="socials">
+    <li>
+      <a href="http://facebook.com">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a href="http://twitter.com">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a href="http://dribbble.com">
+        <i class="fa fa-dribbble"></i>
+      </a>
+    </li>
+    <li>
+      <a href="http://tumblr.com">
+        <i class="fa fa-tumblr"></i>
+      </a>
+    </li>
+  </ul>
+  <div class="spacing"></div>
+</div>
+<div class="col-md-3">
+  <div class="spacing"></div>
+  <div class="links">
+    <h4>Some pages</h4>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">View some works here</a></li>
+      <li><a href="#">Follow our blog</a></li>
+      <li><a href="#">Contact us</a></li>
+      <li><a href="#">Our services</a></li>
+    </ul>
+  </div>
+  <div class="spacing"></div>
+</div>
+<div class="col-md-3">
+  <div class="spacing"></div>
+  <div class="links">
+    <h4>Recent posts</h4>
+    <ul>
+      <li><a href="#">Hello World!</a></li>
+      <li><a href="#">This is the post title here</a></li>
+      <li><a href="#">Our happy day</a></li>
+      <li><a href="#">The first works done</a></li>
+      <li><a href="#">The cats and dogs</a></li>
+    </ul>
+  </div>
+  <div class="spacing"></div>
+</div>
+<div class="col-md-3">
+  <div class="spacing"></div>
+  <h4>Email updats</h4>
+  <p>We want to share our latest trends, news and insights with you.</p>
+  <form>
+    <input class="email-address" placeholder="Your email address" type="text">
+    <input class="button boxed small" type="submit">
+  </form>
+  <div class="spacing"></div>
+</div>
+</div>
+</div>
+<div class="two spacing"></div>
+</footer>
+
+<a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+</div>
+
+</div>
+
+<nav class="sidebar-menu slide-from-left">
+<div class="nano">
+<div class="content">
+  <nav class="responsive-menu">
+    <ul>
+      <li><a href="index-2.html">Home</a></li>
+      <li class="menu-item-has-children"><a href="#">Pages</a>
+        <ul class="sub-menu">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="clients.html">Clients</a></li>
+        </ul>
+      </li>
+      <li class="menu-item-has-children"><a href="#">Blog</a>
+        <ul class="sub-menu">
+          <li><a href="blog.html">Blog Classic</a></li>
+          <li><a href="blog-grid.html">Blog Grid</a></li>
+          <li><a href="blog-single.html">Single Post</a></li>
+        </ul>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li class="menu-item-has-children"><a href="#">Works</a>
+        <ul class="sub-menu">
+          <li><a href="work-3columns.html">Three Columns</a></li>
+          <li><a href="work-4columns.html">Four Columns</a></li>
+          <li><a href="single-project.html">Single Project</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</div>
+</div>
+</nav>
+
+</div>
+
+
+
+
+<script type="text/javascript" src="files/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="files/js/bootstrap.min.js"></script>
+<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+<script src="files/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="files/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+<script type="text/javascript" src="files/js/plugins.js"></script>
+<script type="text/javascript" src="files/js/custom.js"></script>
+
+</body>
+</html>
