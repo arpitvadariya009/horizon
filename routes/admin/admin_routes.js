@@ -8,7 +8,11 @@ const app = express();
 const slider_model = require('../../models/sliders_model');
 const post_model = require('../../models/post_model');
 const quotes_model = require('../../models/quotes_model')
+const register_model  = require('../../models/register_model');
 
+//passport require
+const passport = require('passport');
+const passportLocal = require('../../config/passport');
 
 //image path
 
@@ -31,13 +35,135 @@ const slider_upload = multer({ storage : mystorage}).single('slider_image');
 const post_upload = multer({ storage : mystorage}).single('post_image');
 
 
-router.get ('/', (req, res)=>{
-    res.render('admin/index');
+router.get ('/',passport.setAuthentication, (req, res)=>{
+    if(!res.locals.user){
+        req.flash('danger_msg', 'please first log in');
+        return res.redirect('admin/login');
+    }
+    return res.render('admin/index');
 });
 
 router.get ('/add_sliders', (req, res)=>{
     res.render('admin/add_sliders');
 });
+
+//*************************** register & login start **********************************
+
+router.get('/register', passport.setAuthentication, (req, res)=>{
+    if(res.locals.user){
+        req.flash('danger_msg', 'please first logout');
+        return res.redirect('/admin');
+    }
+    return res.render('admin/register');
+});
+
+router.post('/registerdata',passport.setAuthentication,async (req, res)=>{
+    const {name,email,password,password2} = await req.body;
+    let errors = [];
+
+    //validation of data
+    if(!name || !email || !password || !password2){
+        errors.push({msg : 'please fill all details'});
+    }
+    if(password!=password2){
+        errors.push({msg: 'password do not match'});
+    }
+    if(password.length<6){
+        errors.push({msg: 'password should be atleast six character'});
+    }
+    if(errors.length > 0){
+        res.render('admin/register',{
+            errors,
+            name,
+            email,
+            password,
+            password2
+        })
+    }else{ 
+        //validation passed
+        register_model.findOne({email : email})
+        .then(async(user)=>{
+            try{
+                if(user){
+                    errors.push({msg : 'email already exist'});
+                    res.render('admin/register',{
+                        errors,
+                        name,
+                        email,
+                        password,
+                        password2
+                    });
+                }
+                else{
+                    const user = await register_model.create({
+                        name,
+                        email,
+                        password
+                    });
+                    req.flash('success_msg','you are registered now you can log in');
+                    res.redirect('/admin/login');
+                }
+            }catch(err){
+                if(err){
+                    console.log(err);
+                    return false;
+                }
+            }             
+        })
+    }
+});
+
+router.get('/login', passport.setAuthentication, async (req, res)=>{
+    
+    if(res.locals.user){
+        req.flash('danger_msg', 'please first logout');
+        return res.redirect('/admin');
+    }
+    return res.render('admin/login');
+
+});
+
+router.post('/logindata',passport.setAuthentication, (req, res, next) =>{
+    passport.authenticate('local',{
+        failureRedirect: '/admin/login',
+        failureFlash: true
+        
+    })(req, res, next);
+}, async (req, res)=>{
+    await res.render('admin/index');
+});
+
+router.get('/logout',passport.setAuthentication, async (req, res)=>{
+    try{
+        await req.logout((err) => {
+            if (err) {
+              return next(err)
+            }
+            req.flash('success_msg', 'You have successfully logged out')
+            res.redirect('/admin/login')
+          })
+        
+    }catch(err){
+        if(err){
+            console.log(err);
+        }
+    }
+})
+
+//*************************** register & login end ********************************** 
+
+
+//*************************** forgot password start **********************************
+
+
+
+
+
+//*************************** forgot password end ********************************** 
+
+
+
+
 
 //*************************** slider crud operation start ********************************** 
 router.post ('/add_data', slider_upload, async (req, res)=>{
@@ -310,6 +436,8 @@ router.get ('/edit_quotes/:id', async(req, res)=>{
             return false;
         }
     }
-})
+});
+
+
 
 module.exports = router;

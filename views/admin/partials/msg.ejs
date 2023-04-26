@@ -1,0 +1,26 @@
+
+<!-- validation error message -->
+<% if(typeof errors != 'undefined'){ %>
+    <% errors.forEach((val)=>{ %>
+         <div class="alert alert-warning" role="alert">
+            <%=val.msg%>
+           </div>
+    <% }) %>
+ <% } %>
+ 
+ <!-- successfully register message when page redirect (using flash) -->
+ <% if(success_msg != '' ){ %>
+    <div class="alert alert-success" role="alert">
+       <%=success_msg%>
+      </div>
+ <% } %>
+ 
+ 
+ <!-- login error message  -->
+ <% if(danger_msg != '' ){ %>
+    <div class="alert alert-warning" role="alert">
+       <%=danger_msg%>
+      </div>
+ <% } %>
+ 
+ 

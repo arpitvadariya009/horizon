@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
+const app = express();
+//app.use('/admin',require('../admin/admin_routes'))
 //models requires
 const slider_model = require('../../models/sliders_model');
 const post_model = require('../../models/post_model');

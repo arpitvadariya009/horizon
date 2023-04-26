@@ -6,7 +6,14 @@ const port = 9000;
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
+const flash = require('connect-flash');
+const cookie = require('cookie-parser');
+const session = require('express-session');
 mongoose.set('strictQuery', true);
+
+//passport require
+const passport = require('passport');
+const passportLocal = require('./config/passport');
 
 //public static
 app.use(express.urlencoded());
@@ -16,6 +23,35 @@ app.use("/uploads",express.static(path.join(__dirname,"uploads")));
 //view set
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
+
+//express session
+app.use(session({
+    secret: 'boom',
+    resave: true,
+    saveUninitialized: true,
+    cookie : {
+        maxAge : 1000*60*60
+    }
+  }));
+
+
+  // Passport middleware
+    app.use(passport.initialize());
+    app.use(passport.session());
+    app.use(passport.setAuthentication);
+    app.use(cookie());
+
+
+  // connect flash
+    app.use(flash());
+
+//global variables
+    app.use((req, res, next)=>{
+        res.locals.success_msg = req.flash('success_msg');
+        res.locals.danger_msg = req.flash('danger_msg');
+        next();
+    })
+
 
 //database 
 const db = require('./config/mongoose');
