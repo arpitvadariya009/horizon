@@ -1,0 +1,54 @@
+<%- include('editcss')%>
+
+
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">edit sliders</h5>
+            <div class="card">
+              <div class="card-body">
+                <form action="/admin/update_course" method="post" enctype="multipart/form-data">
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Title </label>
+                    <input type="hidden" name="id" value="<%=singledata.id%>">
+                    <input type="text" name="title" value="<%=singledata.title%>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">founder</label>
+                    <input type="text" name="founder"  value="<%=singledata.founder%>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">category</label>
+                    <input type="text" name="category"  value="<%=singledata.category%>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">details</label>
+                    <input type="text" name="details"  value="<%=singledata.details%>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">date</label>
+                    <input type="date" name="date"  value="<%= singledata.date.toISOString().substring(0, 10) %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">attach course image</label>
+                    <img src="/<%= '../' + singledata.course_image%>" width="100" alt="slider">
+                    <input type="file" name="course_image"  class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/sidebarmenu.js"></script>
+<script src="../assets/js/app.min.js"></script>
+<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+</body>
+</html>

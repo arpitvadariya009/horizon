@@ -233,8 +233,8 @@
 <body>
     <div class="Box">
         <span class="borderline"></span>
-        <form action="/admin/logindata" method="post">
-            <h2>login</h2>
+        <form action="/admin/forgot" method="post">
+            <h2>forgot</h2>
             <%- include('partials/msg.ejs') %>
             
             <div class="inputBox">
@@ -242,15 +242,9 @@
                 <span>email</span>
                 <i></i>
             </div>
-            <div class="inputBox">
-                <input type="password" required name="password" value="<%= typeof email != 'undefined' ? email : '' %>">
-                <span>Password</span>
-                <i></i>
-            </div>
             
             <input type="submit" >
-            <a href="/admin/register">register</a>
-            <a href="/admin/forgot">forgot password</a>
+            
 
         </form>
     </div>

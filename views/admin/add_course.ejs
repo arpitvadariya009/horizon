@@ -1,0 +1,56 @@
+<%- include('header')%>
+
+
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">add course</h5>
+            <div class="card">
+              <div class="card-body">
+                <form action="/admin/add_course" method="post" enctype="multipart/form-data">
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Title </label>
+                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">founder</label>
+                    <input type="text" name="founder" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                 
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">category</label>
+                    <input type="text" name="category"  class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">details</label>
+                    <input type="text" name="details"  class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">date</label>
+                    <input type="date" name="date"  class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">course_image</label>
+                    <input type="file" name="course_image"  class="form-control" id="exampleInputPassword1">
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/sidebarmenu.js"></script>
+<script src="../assets/js/app.min.js"></script>
+<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+</body>
+
+</html>

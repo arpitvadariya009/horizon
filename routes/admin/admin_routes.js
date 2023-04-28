@@ -3,12 +3,17 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 const app = express();
+const cookie = require('cookie-parser');
+//node mailer
+const nodemailer = require('nodemailer');
 
 //models
 const slider_model = require('../../models/sliders_model');
 const post_model = require('../../models/post_model');
 const quotes_model = require('../../models/quotes_model')
 const register_model  = require('../../models/register_model');
+const course_model  = require('../../models/course_model');
+
 
 //passport require
 const passport = require('passport');
@@ -33,6 +38,8 @@ const mystorage = multer.diskStorage({
 
 const slider_upload = multer({ storage : mystorage}).single('slider_image');
 const post_upload = multer({ storage : mystorage}).single('post_image');
+const course_upload = multer({ storage : mystorage}).single('course_image');
+
 
 
 router.get ('/',passport.setAuthentication, (req, res)=>{
@@ -155,8 +162,110 @@ router.get('/logout',passport.setAuthentication, async (req, res)=>{
 
 //*************************** forgot password start **********************************
 
+router.get('/forgot', async (req, res)=>{
+    res.render('admin/forgot');
+});
 
+router.post('/forgot', async (req, res)=>{
+    try{
+        let email = req.body.email;
+        let user = await register_model.findOne({email : email});
+        if(user){
+            
+            let otp = Math.floor(Math.random() * 1000000);
 
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 587,
+                secure: false,
+                auth: {
+                  user: 'arpitvadariya003@gmail.com',
+                  pass: 'ioufebxriwioarjc'
+                }
+              });
+
+              let mailOptions = {
+                from: 'arpitvadariya003@gmail.com',
+                to: email,
+                subject: 'horrizon education ',
+                text: 'Otp :- '+otp
+              };
+
+              transporter.sendMail(mailOptions, function(error, info){
+                if(error) {
+                  console.log(error);
+                } else {
+                    let otpobj = {
+                        email : email,
+                        otp : otp
+                    }
+                    res.cookie('data',otpobj);
+                  console.log('Email sent: ' + info.response);
+                  return res.redirect('/admin/otp');
+                }
+              });
+        }else{
+            console.log(" not found");
+            return res.redirect('back');
+        }
+   }catch(err){
+        console.log(err);
+        return res.redirect('back');
+   }
+});
+
+router.get('/otp', (req, res)=>{
+    res.render('admin/otp');
+});
+
+router.post('/otp', async (req, res)=>{
+    let otp = req.cookies.data.otp;
+    if(otp == req.body.otp){
+        return res.redirect('/admin/newpass');
+    }
+    else{
+        req.flash('danger_msg', 'please cheack otp');
+        return res.redirect('back');
+    }
+});
+
+router.get('/newpass', (req, res)=>{
+    res.render('admin/newpass');
+});
+
+router.post('/newpass', async (req, res)=>{
+    try{
+
+        if(req.body.password == req.body.cpassword){
+            let email = req.cookies.data.email;
+    
+            let data = await register_model.findOneAndUpdate({email},
+                {
+                    password : req.body.password
+                });
+    
+                if(data){
+                    req.flash('success_msg', 'password successfully updated');
+                    res.clearCookie('otp');
+                    return res.redirect('/admin/login');
+                }
+                else{
+                    console.log("password not match");
+                }
+        }
+        else{
+            req.flash('danger_msg', 'check password');
+            return res.redirect('back');
+        }
+    
+    }
+    catch(err){
+        if(err){
+            console.log(err);
+            return false;
+        }
+    }
+})
 
 
 //*************************** forgot password end ********************************** 
@@ -172,7 +281,8 @@ router.post ('/add_data', slider_upload, async (req, res)=>{
        await slider_model.create({
         title1 : req.body.title1,
         title2 : req.body.title2,
-        slider_image : imagePath+"/"+req.file.filename
+        slider_image : imagePath+"/"+req.file.filename,
+        status : 0
        })
        
        res.redirect('back');
@@ -182,7 +292,7 @@ router.post ('/add_data', slider_upload, async (req, res)=>{
             return false;
         }
     }
-})
+});  
 
 router.get ('/view_sliders', async(req, res)=>{
     let data = await slider_model.find({});
@@ -258,6 +368,22 @@ router.post('/updatedata', slider_upload, async (req, res)=>{
 
 
 //*************************** slider crud operation end ********************************** 
+
+
+//********************************* active and deactive for slider start **********************
+router.get('/activate/:id', async (req, res)=>{
+    let id = req.params.id;
+    let data = await slider_model.findByIdAndUpdate(id, { status: "1" });
+    res.redirect('back');
+  });
+
+  router.get('/deactivate/:id', async (req, res)=>{
+    let id = req.params.id;
+    let data = await slider_model.findByIdAndUpdate(id, { status: "0" });
+    res.redirect('back');
+  });
+  
+//********************************* active and deactive for slider end **********************
 
 
 //*************************** post crud operation start ********************************** 
@@ -437,6 +563,120 @@ router.get ('/edit_quotes/:id', async(req, res)=>{
         }
     }
 });
+//*************************** quotes crud operation end **********************************
+
+
+//*************************** course crud operation start **********************************
+
+router.get('/add_course', (req, res)=>{
+    res.render('admin/add_course');
+});
+
+router.post ('/add_course', course_upload, async (req, res)=>{
+    
+    try{
+       await course_model.create({
+        title : req.body.title,
+        founder: req.body.founder,
+        category: req.body.category,
+        details: req.body.details,
+        date: req.body.date,
+        course_image : imagePath+"/"+req.file.filename
+       })
+       
+       res.redirect('back');
+    }catch(err){
+        if(err){
+            console.log(err);
+            return false;
+        }
+    }
+});
+
+router.get ('/view_course', async(req, res)=>{
+    let data = await course_model.find({});
+    res.render('admin/view_course',{
+        alldata : data
+    })
+});
+
+router.get ('/delete_course/:id', async(req, res)=>{
+    try{
+        let id = req.params.id;
+        let data = await course_model.findById(id);
+
+        fs.unlinkSync(data.course_image);
+        await course_model.findByIdAndDelete(id);
+        return res.redirect('back');
+    }catch(err){
+        if(err){
+            console.log(err);
+            return false;
+        }
+    }
+});
+
+
+router.get ('/edit_course/:id', async(req, res)=>{
+    try{
+      let id = req.params.id;
+      let data = await course_model.findById(id);
+  
+      return res.render('admin/edit_course',{
+          singledata : data
+      })
+    }catch(err){
+      if(err){
+          console.log(err);
+          return false;
+      }
+    }
+  });
+
+
+  router.post('/update_course', course_upload, async (req, res)=>{
+    try{
+        let id = req.body.id;
+        if(req.file){
+            let data = await course_model.findById(id);
+            fs.unlinkSync(data.course_image);
+
+            await course_model.findByIdAndUpdate(id,{
+                title : req.body.title,
+                founder: req.body.founder,
+                category: req.body.category,
+                details: req.body.details,
+                date: req.body.date,
+                course_image : imagePath+"/"+req.file.filename
+            })
+            return res.redirect('/admin/view_course');
+        }else{
+            let data = await course_model.findById(id);
+            let oldimg = data.course_image;
+            
+            await course_model.findByIdAndUpdate(id,{
+                title : req.body.title,
+                founder: req.body.founder,
+                category: req.body.category,
+                details: req.body.details,
+                date: req.body.date,
+                course_image : oldimg
+            })
+            res.redirect('/admin/view_course');
+        }
+
+    }catch(err){
+        if(err){
+            console.log(err);
+            return false;
+        }
+    }
+})
+
+
+//*************************** course crud operation end ********************************** 
+
+
 
 
 

@@ -13,6 +13,10 @@ const sliderschema = mongoose.Schema({
     slider_image : {
         type : String,
         required : true
+    },
+    status : {
+        type : String,
+        required : true
     }
 });
 const slider = mongoose.model('slider',sliderschema);

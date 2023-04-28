@@ -59,6 +59,7 @@
                 <th>slider</th>
                 <th>delete</th>
                 <th>edit</th>
+                <th>status</th>
               </tr>
             </thead>
             <tbody>
@@ -70,6 +71,16 @@
                     </td>
                     <td><a href="/admin/deletedata/<%=val.id%>" id="actionbutton">delete</a></td>
                     <td> <a href="/admin/editdata/<%=val.id%>" id="actionbutton">edit</a></td>
+                    <td>
+                      <% if (val.status == 1) { %>
+                        <a href="/admin/deactivate/<%=val.id%>" id="Deactivate">Deactivate</a>
+                      <% } else { %>
+                        <a href="/admin/activate/<%=val.id%>" id="Activate">Activate</a>
+                      <% } %>
+                    </td>
+                    
+                    
+
                   </tr>
              <% }) %>
             </tbody>
