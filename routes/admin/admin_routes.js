@@ -26,6 +26,7 @@ app.use("../../uploads",express.static(path.join(__dirname,"uploads")));
 
 //multer for slider
 const multer  = require('multer');
+const { LOADIPHLPAPI } = require('dns');
 
 const mystorage = multer.diskStorage({
     destination : (req,file,cb) => {
@@ -39,7 +40,7 @@ const mystorage = multer.diskStorage({
 const slider_upload = multer({ storage : mystorage}).single('slider_image');
 const post_upload = multer({ storage : mystorage}).single('post_image');
 const course_upload = multer({ storage : mystorage}).single('course_image');
-
+const user_upload = multer({ storage : mystorage}).single('user_image');
 
 
 router.get ('/',passport.setAuthentication, (req, res)=>{
@@ -126,6 +127,7 @@ router.get('/login', passport.setAuthentication, async (req, res)=>{
         req.flash('danger_msg', 'please first logout');
         return res.redirect('/admin');
     }
+  
     return res.render('admin/login');
 
 });
@@ -137,11 +139,13 @@ router.post('/logindata',passport.setAuthentication, (req, res, next) =>{
         
     })(req, res, next);
 }, async (req, res)=>{
+    res.cookie('userEmail', req.user.email);
     await res.render('admin/index');
 });
 
 router.get('/logout',passport.setAuthentication, async (req, res)=>{
     try{
+        res.clearCookie('userEmail');
         await req.logout((err) => {
             if (err) {
               return next(err)
@@ -674,7 +678,93 @@ router.get ('/edit_course/:id', async(req, res)=>{
 })
 
 
-//*************************** course crud operation end ********************************** 
+//*************************** course crud operation end **********************************
+
+
+
+//*************************** profile update start **********************************
+
+router.get('/profile',async(req, res)=>{
+  try{
+        let userEmail = req.cookies.userEmail;
+        let data = await register_model.findOne({email : userEmail});
+    if(data){
+        res.render('admin/profile',{
+            userdata : data
+        });
+    }else{
+        console.log("user data not found");
+    }
+        
+  }catch(err){
+    if(err){
+        console.log(err);
+    }
+  }
+});
+
+router.get('/edit_profile', async (req, res)=>{
+    try{
+        let userEmail = req.cookies.userEmail;
+        let data = await register_model.findOne({email : userEmail});
+    if(data){
+        res.render('admin/edit_profile',{
+            userdata : data
+        });
+    }else{
+        console.log("user data not found");
+    }
+        
+  }catch(err){
+    if(err){
+        console.log(err);
+    }
+  }
+
+});
+
+router.post('/update_profile', user_upload, async (req, res)=>{
+    try{
+        let userEmail = req.cookies.userEmail;
+        let data = await register_model.findOne({email : userEmail});
+    
+        if(req.file){
+           if(data.user_image){
+                fs.unlinkSync(data.user_image);
+           }
+            await register_model.findOneAndUpdate(userEmail,{
+                name : req.body.name,
+                email : req.body.email,
+                user_image : imagePath+"/"+req.file.filename
+            })
+            return res.redirect('/admin/profile');
+        }else{
+            if(data.user_image){
+                let oldimg = data.post_image;
+                await register_model.findOneAndUpdate(userEmail,{
+                    name : req.body.name,
+                    email : req.body.email,
+                    user_image : oldimg
+                })
+            }
+            await register_model.findOneAndUpdate(userEmail,{
+                name : req.body.name,
+                email : req.body.email,
+            })
+            res.redirect('/admin/profile');
+        }
+        
+  }catch(err){
+    if(err){
+        console.log(err);
+    }
+  }
+})
+
+
+//*************************** profile update end ********************************** 
+
+
 
 
 

@@ -25,5 +25,19 @@ router.get('/', async(req, res)=>{
     });
 });
 
+router.get('/course_details/:id', async (req, res) => {
+    const courseId = req.params.id;
+    const course = await course_model.findById(courseId);
+  
+    if (!course) {
+      return res.status(404).send('Course not found');
+    }
+  
+    return res.render('users/course_details', {
+      course : course
+    });
+  });
 
-module.exports = router;router
+  
+
+module.exports = router;

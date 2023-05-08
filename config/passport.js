@@ -13,7 +13,7 @@ passport.use(new passportLocal({
         return done(null, false, {type:'danger_msg', message:'incorrect password !!!'});
     }
     return done(null, user);
-}))
+}));
 
 passport.serializeUser((user,done)=>{
     return done(null,user.id)
@@ -37,7 +37,7 @@ passport.checkAuthentication = async (req, res, next) => {
     } catch (error) {
       return res.redirect('/admin/login');
     }
-  }
+  };
   
 passport.setAuthentication = async (req, res, next) =>{
     try{
@@ -45,12 +45,11 @@ passport.setAuthentication = async (req, res, next) =>{
             res.locals.user = req.user;
         }
         next();
-        
     }catch(err){
         if(err){
             console.log(err);
         }
     }
-}
+};
 
 module.exports = passport;

@@ -15,6 +15,9 @@ mongoose.set('strictQuery', true);
 const passport = require('passport');
 const passportLocal = require('./config/passport');
 
+//sql
+const sql = require('mysql');
+
 //public static
 app.use(express.urlencoded());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -61,7 +64,7 @@ const db = require('./config/mongoose');
 //routes set
 app.use('/',require('./routes/users/users_routes'));
 app.use('/admin',require('./routes/admin/admin_routes'));
-
+app.use('/api',require('./routes/users/user_api'));
 
 
 //server start

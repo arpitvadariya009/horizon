@@ -34,6 +34,7 @@
 
 
 
+
 <section class="services green">
   <div class="container">
     <div class="section-heading">
@@ -281,10 +282,10 @@
           <div class="col-md-4">
             <a href="blog-single.html"><img src="<%=val.course_image%>" alt=""></a>
             <h3><a href="blog-single.html"><%=val.title%></a></h3>
-            <span><a href="#"><%=val.founder%></a> / <a href="#"><%=val.date.toString()%></a> / <a href="#"><%=val.category%></a></span>
+            <span><a href="#"><%=val.founder%></a> / <a href="#"><%=val.date.toString().substring(0, 10)%></a> / <a href="#"><%=val.category%></a></span>
             <p><%=val.details%></p>
             <div class="read-more">
-              <a href="#">Read more</a>
+              <a href="/course_details/<%=val.id%>">Read more</a>
             </div>
           </div>
         </div>

@@ -13,6 +13,9 @@ const registerschema = mongoose.Schema({
     password : {
         type : String,
         required  : true
+    },
+    user_image : {
+        type : String
     }
 });
 const register = mongoose.model('register',registerschema);
