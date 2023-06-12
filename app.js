@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 const cookie = require('cookie-parser');
 const session = require('express-session');
 mongoose.set('strictQuery', true);
+const hostname = '0.0.0.0';
 
 //passport require
 const passport = require('passport');
