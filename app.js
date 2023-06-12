@@ -20,7 +20,7 @@ const passportLocal = require('./config/passport');
 const sql = require('mysql');
 
 //public static
-app.use(express.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/uploads",express.static(path.join(__dirname,"uploads")));
 
