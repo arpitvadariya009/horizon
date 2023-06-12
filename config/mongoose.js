@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const db = mongoose.connect('mongodb://127.0.0.1/final_project',{
+const db = mongoose.connect('mongodb+srv://arpitvadariya009:A.kkiller47%40@oreohospital.fjhcf3c.mongodb.net/horizone',{
 
 }).then(()=>{
     console.log("connected");
