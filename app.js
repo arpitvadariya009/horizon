@@ -11,6 +11,7 @@ const cookie = require('cookie-parser');
 const session = require('express-session');
 mongoose.set('strictQuery', true);
 const hostname = '0.0.0.0';
+const bodyParser = require('body-parser');
 
 //passport require
 const passport = require('passport');
